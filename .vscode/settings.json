@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "func_vendas.h": "c",
+        "stdio.h": "c",
+        "struct_date.h": "c",
+        "func_produtos.h": "c",
+        "locale.h": "c",
+        "stdlib.h": "c",
+        "func_clientes.h": "c",
+        "func_relatorio.h": "c"
+    }
+}
