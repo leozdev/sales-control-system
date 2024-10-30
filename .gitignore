@@ -1,0 +1,43 @@
+# Sistema de arquivos
+.DS_Store
+Thumbs.db
+
+# Ambiente Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Arquivos de cache
+*.egg-info/
+*.egg
+dist/
+build/
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+
+# IDEs e editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Arquivos de configuração
+*.env
+*.local
+
+# Outros arquivos ignorados
+*.log
+*.swp
+*.tmp
+*.bak
+*.orig
