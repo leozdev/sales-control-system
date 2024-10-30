@@ -1,11 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-
 #include "../headers/func_relatorio.h"
-#include "../headers/func_clientes.h"
-#include "../headers/func_produtos.h"
-#include "../headers/func_vendas.h"
 
 int relatorio_cliente_x_telefones(Cliente *clientes, int qtd_clientes, int x_telefones)
 {   
@@ -55,7 +48,6 @@ int relatorio_vendas_periodo(Venda *vendas, int qtd_vendas)
     time_t fim = mktime(&tm_fim);
 
     // TODO: TERMINAR
-    //     // Iterando pelas vendas
     // for (int i = 0; i < qtd_vendas; i++) {
     //     struct tm tm_venda = {0};
 
@@ -63,12 +55,10 @@ int relatorio_vendas_periodo(Venda *vendas, int qtd_vendas)
     //     tm_venda.tm_mon = vendas[i].data.mes - 1;     // Ajusta o mês
     //     tm_venda.tm_mday = vendas[i].data.dia;         // Dia da venda
 
-    //     // Convertendo a data da venda para time_t
     //     time_t data_venda = mktime(&tm_venda);
 
-    //     // Verificando se a venda está dentro do período
     //     if (data_venda >= inicio && data_venda <= fim) {
-    //         contador++; // Conta a venda dentro do período
+    //         contador++;
     //         printf("Venda em %02d/%02d/%d: R$%.2f\n", vendas[i].data.dia, vendas[i].data.mes, vendas[i].data.ano, vendas[i].valor);
     //     }
     // }
@@ -104,6 +94,7 @@ void submenu_relatorios()
             // relatorio_vendas_periodo();
             break;
         case 4:
+            printf("\nVoltando ao menu principal...\n");
             break;
         default:
             printf("\nOpção inválida. Por favor, escolha uma opção de 1 a 4.\n");

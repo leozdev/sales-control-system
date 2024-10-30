@@ -1,7 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 #include "../headers/func_produtos.h"
 
 int buscar_produto(Produto *produtos, char codigo[], int qtd_produtos)

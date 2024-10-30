@@ -1,9 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 #include "../headers/func_clientes.h"
-#include "../headers/defines.h"
 
 int buscar_cliente(Cliente *clientes, char cpf[], int qtd_clientes)
 {
@@ -18,53 +13,43 @@ int buscar_cliente(Cliente *clientes, char cpf[], int qtd_clientes)
 void cadastrar_email(Cliente *cliente)
 {
     char confirma;
-    char email[TAM_EMAIL];
-
+    
     do
     {
         printf("Digite o e-mail: ");
-        gets(email);
-    
-        cliente->emails = (char **)realloc(cliente->emails, (cliente->qtd_emails + 1) * sizeof(char *));
+        gets(*(cliente->emails + cliente->qtd_emails));
 
-        *(cliente->emails + cliente->qtd_emails) = (char *)malloc(strlen(email) + 1);
-        
-        if ((cliente->emails + cliente->qtd_emails) != NULL) {
-            strcpy(*(cliente->emails + cliente->qtd_emails), email);
-            cliente->qtd_emails++;
-        }
+        cliente->qtd_emails++;
 
         printf("> Deseja cadastrar mais um e-mail para este cliente (S/N): ");
         scanf("%c", &confirma);
         fflush(stdin);
 
-    } while (confirma != 'N' && confirma != 'n');
+    } while (confirma != 'N' && confirma != 'n' && cliente->qtd_emails < QTD_MAX_EMAILS);
+
+    if (cliente->qtd_emails >= QTD_MAX_EMAILS)
+        printf("\nLimite de e-mails atingido para este cliente.\n");
 }
 
 void cadastrar_telefone(Cliente *cliente)
 {
     char confirma;
-    char telefone[TAM_TELEFONE];
 
     do
     {
         printf("Digite o telefone: ");
-        gets(telefone);
+        gets(*(cliente->telefones + cliente->qtd_telefones));
 
-        cliente->telefones = (char **)realloc(cliente->telefones, (cliente->qtd_telefones + 1) * sizeof(char *));
-
-        *(cliente->telefones + cliente->qtd_telefones) = (char *)malloc(strlen(telefone) + 1);
-        
-        if ((cliente->telefones + cliente->qtd_telefones) != NULL) {
-            strcpy(*(cliente->telefones + cliente->qtd_telefones), telefone);
-            cliente->qtd_telefones++;
-        }
+        cliente->qtd_telefones++;
 
         printf("> Deseja cadastrar mais um telefone para este cliente (S/N): ");
         scanf("%c", &confirma);
         fflush(stdin);
 
-    } while (confirma != 'N' && confirma != 'n');
+    } while (confirma != 'N' && confirma != 'n' && cliente->qtd_telefones < QTD_MAX_TELEFONES);
+
+    if (cliente->qtd_telefones >= QTD_MAX_TELEFONES)
+        printf("\nLimite de telefones atingido para este cliente.\n");
 }
 
 
@@ -99,8 +84,6 @@ int incluir_cliente(Cliente *clientes, int *qtd_clientes)
     scanf("%f", &cliente->salario);
     fflush(stdin);
 
-    cliente->emails = NULL;
-    cliente->telefones = NULL;
     cliente->qtd_emails = 0;
     cliente->qtd_telefones = 0;
 
@@ -117,7 +100,7 @@ void listar_emails(Cliente *cliente)
     printf("\n\tEmails cadastrados:");
     for (int i = 0; i < cliente->qtd_emails; i++)
     {
-        printf("\n\t%d. %s", i + 1, *(cliente->emails + i));
+        printf("\n\t%d. %s", i + 1, (cliente->emails + i));
     }
 }
 
@@ -126,7 +109,7 @@ void listar_telefones(Cliente *cliente)
     printf("\n\tTelefones cadastrados:");
     for (int i = 0; i < cliente->qtd_telefones; i++)
     {
-        printf("\n\t%d. %s", i + 1,  *(cliente->telefones + i));
+        printf("\n\t%d. %s", i + 1,  (cliente->telefones + i));
     }
 }
 
@@ -152,8 +135,7 @@ void alterar_email(Cliente *cliente)
 {
     listar_emails(cliente);
 
-    if (cliente->qtd_emails == 0)
-    {
+    if (cliente->qtd_emails == 0) {
         printf("\nNenhum email cadastrado.");
         return;
     }
@@ -163,29 +145,20 @@ void alterar_email(Cliente *cliente)
     scanf("%d", &idx);
     fflush(stdin);
     
-    if (idx < 1 || idx > cliente->qtd_emails)
-    {
+    if (idx < 1 || idx > cliente->qtd_emails) {
         printf("\nOpção inválida.");
         return;
     }
 
-    char novo_email[TAM_EMAIL];
     printf("\nDigite o email: ");
-    gets(novo_email);
-
-    free(*(cliente->emails + idx - 1));
-
-    *(cliente->emails + idx - 1) = (char *)malloc(strlen(novo_email) + 1);
-
-    strcpy(*(cliente->emails + idx - 1), novo_email);
+    gets(*(cliente->emails + idx - 1));
 }
 
 void alterar_telefone(Cliente *cliente)
 {
     listar_telefones(cliente);
 
-    if (cliente->qtd_telefones == 0)
-    {
+    if (cliente->qtd_telefones == 0) {
         printf("\nNenhum telefone cadastrado.");
         return;
     }
@@ -201,15 +174,8 @@ void alterar_telefone(Cliente *cliente)
         return;
     }
 
-    char novo_telefone[TAM_TELEFONE];
     printf("\nDigite o telefone: ");
-    gets(novo_telefone);
-
-    free(*(cliente->telefones + idx - 1));
-
-    *(cliente->telefones + idx - 1) = (char *)malloc(strlen(novo_telefone) + 1);
-
-    strcpy(*(cliente->telefones + idx - 1), novo_telefone);
+    gets(*(cliente->telefones + idx - 1));
 }
 
 int alterar_cliente(Cliente *clientes, char cpf[], int qtd_clientes)
@@ -283,17 +249,6 @@ int excluir_cliente(Cliente *clientes, char cpf[], int *qtd_clientes)
     Cliente *cliente = (clientes + idx);
 
     int i;
-    for (i = 0; i < cliente->qtd_emails; i++) {
-        free(*(cliente->emails + i));
-    }
-
-    for (i = 0; i <cliente->qtd_telefones; i++) {
-        free(*(cliente->telefones + i));
-    }
-
-    free(cliente->emails);
-    free(cliente->telefones);
-
     for (i = idx; i < *qtd_clientes - 1; i++) {
         *(clientes + i) = *(clientes + i + 1);
     }

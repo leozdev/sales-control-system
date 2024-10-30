@@ -46,6 +46,7 @@ int main()
     // Carregar os dados para os registros
     carregar_clientes(clientes, &qtd_clientes);
     carregar_produtos(produtos, &qtd_produtos);
+    carregar_vendas(vendas, &qtd_vendas);
 
     int opt;
     do 
@@ -86,22 +87,8 @@ int main()
     // Salvar em arquivo binário os dados dos registros (Clientes, Produtos e Vendas)
     salvar_clientes(clientes, qtd_clientes);
     salvar_produtos(produtos, qtd_produtos);
+    salvar_vendas(vendas, qtd_vendas);
 
-    // Libera a memória alocada dinamicamente para os emails e telefones de cada cliente
-    int i, j, k;
-    for (i = 0; i < qtd_clientes; i++) {
-
-        for (j = 0; j < (clientes + i)->qtd_emails; j++) {
-            free(*((clientes + i)->emails + j));
-        }
-        free((clientes + i)->emails);
-
-        for (k = 0; k < (clientes + i)->qtd_telefones; k++) {
-            free(*((clientes + i)->telefones + k));
-        }
-        free((clientes + i)->telefones);
-    }
-    // ----------------------------------------------------------------------------------
 
     free(clientes);
     free(vendas);

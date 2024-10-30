@@ -1,11 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <locale.h>
-
 #include "../headers/func_vendas.h"
-#include "../headers/func_clientes.h"
-#include "../headers/func_produtos.h"
 
 int buscar_venda(Venda *vendas, char cpf_cliente[], char codigo_produto[], Date data, Hora hora, int qtd_vendas) 
 {

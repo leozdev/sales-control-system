@@ -1,45 +1,11 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-
-#include "../headers/func_clientes.h"
-#include "../headers/func_produtos.h"
-#include "../headers/func_vendas.h"
-#include "../headers/defines.h"
+#include "../headers/func_arquivos.h"
 
 void salvar_clientes(Cliente *clientes, int qtd_clientes)
 {
     FILE *arq = fopen(NOME_ARQ_CLIENTES, "wb");
 
     fwrite(&qtd_clientes, sizeof(int), 1, arq);
-
-    int i, j, tamanho_email, tamanho_telefone;
-
-    for (i = 0; i < qtd_clientes; i++) {
-        
-        Cliente *cliente = (clientes + i);
-
-        fwrite(cliente->cpf, sizeof(cliente->cpf), 1, arq);
-        fwrite(cliente->nome, sizeof(cliente->nome), 1, arq);
-        fwrite(&cliente->data_nasc, sizeof(Date), 1, arq);
-        fwrite(cliente->sexo, sizeof(cliente->sexo), 1, arq);
-        fwrite(&cliente->salario, sizeof(float), 1, arq);
-        fwrite(&cliente->qtd_emails, sizeof(int), 1, arq);
-
-        for (j = 0; j < cliente->qtd_emails; j++) {
-            tamanho_email = strlen(*(cliente->emails + j)) + 1;
-            fwrite(&tamanho_email, sizeof(int), 1, arq);
-            fwrite(*(cliente->emails + j), sizeof(char), tamanho_email, arq);
-        }
-
-        fwrite(&cliente->qtd_telefones, sizeof(int), 1, arq);
-
-        for (j = 0; j < cliente->qtd_telefones; j++) {
-            tamanho_telefone = strlen(*(cliente->telefones + j)) + 1;
-            fwrite(&tamanho_telefone, sizeof(int), 1, arq);
-            fwrite(*(cliente->telefones + j), sizeof(char), tamanho_telefone, arq);
-        }
-    }
+    fwrite(clientes, sizeof(Cliente), qtd_clientes, arq);
     fclose(arq);
 }
 
@@ -51,38 +17,7 @@ void carregar_clientes(Cliente *clientes, int *qtd_clientes)
         return;
 
     fread(qtd_clientes, sizeof(int), 1, arq);
-    
-    int i, j, tamanho_email, tamanho_telefone;
-    for (i = 0; i < *qtd_clientes; i++) {
-        
-        Cliente *cliente = (clientes + i);
-
-        fread(cliente->cpf, sizeof(cliente->cpf), 1, arq);
-        fread(cliente->nome, sizeof(cliente->nome), 1, arq);
-        fread(&cliente->data_nasc, sizeof(Date), 1, arq);
-        fread(cliente->sexo, sizeof(cliente->sexo), 1, arq);
-        fread(&cliente->salario, sizeof(float), 1, arq);
-        fread(&cliente->qtd_emails, sizeof(int), 1, arq);
-
-        cliente->emails = malloc(cliente->qtd_emails * sizeof(char *));
-
-        for (j = 0; j < cliente->qtd_emails; j++) {
-            fread(&tamanho_email, sizeof(int), 1, arq);
-
-            *(cliente->emails + j) = malloc(tamanho_email * sizeof(char));
-            fread(*(cliente->emails + j), sizeof(char), tamanho_email, arq);
-        }
-
-        fread(&cliente->qtd_telefones, sizeof(int), 1, arq);
-        cliente->telefones = malloc(cliente->qtd_telefones * sizeof(char *));
-
-        for (j = 0; j < cliente->qtd_telefones; j++) {
-            fread(&tamanho_telefone, sizeof(int), 1, arq);
-
-            *(cliente->telefones + j) = malloc(tamanho_telefone * sizeof(char));
-            fread(*(cliente->telefones + j), sizeof(char), tamanho_telefone, arq);
-        }
-    }
+    fread(clientes, sizeof(Cliente), *qtd_clientes, arq);
     fclose(arq);
 }
 

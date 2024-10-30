@@ -7,6 +7,8 @@
         "locale.h": "c",
         "stdlib.h": "c",
         "func_clientes.h": "c",
-        "func_relatorio.h": "c"
+        "func_relatorio.h": "c",
+        "string.h": "c",
+        "func_arquivos.h": "c"
     }
 }
