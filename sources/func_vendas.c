@@ -28,20 +28,20 @@ int buscar_venda(Venda *vendas, char cpf_cliente[], char codigo_produto[], Date 
 
 void ler_dados_venda(char cpf_cliente[], char codigo_produto[], Date *data_venda, Hora *hora_venda)
 {
-    printf("\nInsira o cpf do cliente: ");
+    printf("\nDigite o CPF do cliente: ");
     gets(cpf_cliente);
 
-    printf("Insira o código do produto: ");
+    printf("Digite o código do produto: ");
     gets(codigo_produto);
 
-    printf("Insira a data da venda (DD/MM/AAAA): ");
+    printf("Digite a data da venda (DD/MM/AAAA): ");
     scanf("%d/%d/%d",
         &data_venda->dia,
         &data_venda->mes,
         &data_venda->ano);
     fflush(stdin);
 
-    printf("Insira a hora da venda (Horas:Minutos): ");
+    printf("Digite a hora da venda (Horas:Minutos): ");
     scanf("%d:%d",
         &hora_venda->horas,
         &hora_venda->minutos);
@@ -51,7 +51,7 @@ void ler_dados_venda(char cpf_cliente[], char codigo_produto[], Date *data_venda
 
 int incluir_venda(Venda *vendas, int *qtd_vendas, Cliente *clientes, int *qtd_clientes, Produto *produtos, int *qtd_produtos)
 {   
-    char cpf_cliente[12], codigo_produto[30]; 
+    char cpf_cliente[TAM_CPF], codigo_produto[TAM_CODIGO]; 
     Date data_venda;
     Hora hora_venda;
 
@@ -180,12 +180,13 @@ int listar_venda_especifica(Venda *vendas, char cpf_cliente[], char codigo_produ
 void submenu_vendas(Venda *vendas, int *qtd_vendas, Cliente *clientes, int *qtd_clientes, Produto *produtos, int *qtd_produtos)
 {   
     int opt;
-    char cpf_cliente[12], codigo_produto[30]; 
+    char cpf_cliente[TAM_CPF], codigo_produto[TAM_CODIGO]; 
     Date data_venda;
     Hora hora_venda;
 
     do
-    {
+    {   
+        system("cls");
         printf("\n---------- Submenu de Vendas ----------\n");
         printf("\n1. Listar Todas");
         printf("\n2. Listar uma Venda Específica");
@@ -210,7 +211,8 @@ void submenu_vendas(Venda *vendas, int *qtd_vendas, Cliente *clientes, int *qtd_
                 
                 ler_dados_venda(cpf_cliente, codigo_produto, &data_venda, &hora_venda);
 
-                listar_venda_especifica(vendas, cpf_cliente, codigo_produto, data_venda, hora_venda, *qtd_vendas);
+                if (!(listar_venda_especifica(vendas, cpf_cliente, codigo_produto, data_venda, hora_venda, *qtd_vendas)))
+                    printf("\nVenda não encontrada.\n");
                 break;
 
             case 3:
@@ -249,7 +251,10 @@ void submenu_vendas(Venda *vendas, int *qtd_vendas, Cliente *clientes, int *qtd_
 
                 ler_dados_venda(cpf_cliente, codigo_produto, &data_venda, &hora_venda);
 
-                excluir_venda(vendas, cpf_cliente, codigo_produto, data_venda, hora_venda, qtd_vendas);
+                if (excluir_venda(vendas, cpf_cliente, codigo_produto, data_venda, hora_venda, qtd_vendas))
+                    printf("\nVenda excluída com sucesso!");
+                else
+                    printf("\nVenda não encontrada.");
                 break;
 
             case 6:
@@ -260,5 +265,8 @@ void submenu_vendas(Venda *vendas, int *qtd_vendas, Cliente *clientes, int *qtd_
                 printf("\nOpção inválida. Por favor, escolha uma opção de 1 a 6.\n");
                 break;
         }
+
+        printf("\nPressione Enter para continuar...");
+        getchar();
     } while (opt != 6);
 }

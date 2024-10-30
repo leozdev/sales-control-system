@@ -17,7 +17,7 @@ int buscar_produto(Produto *produtos, char codigo[], int qtd_produtos)
 
 int incluir_produto(Produto *produtos, int *qtd_produtos)
 {
-    char codigo[30];
+    char codigo[TAM_CODIGO];
 
     Produto *produto = (produtos + *qtd_produtos);
 
@@ -101,49 +101,49 @@ int alterar_produto(Produto *produtos, char codigo[], int qtd_produtos)
         case 1:
             printf("Digite a descrição do produto: ");
             gets(produto->descricao);
-            printf("\nDescrição alterada com sucesso!");
+            printf("\nDescrição alterada com sucesso!\n");
             break;
 
         case 2:
             printf("Digite o tamanho do produto: ");
             scanf("%f", &produto->tamanho);
             fflush(stdin);
-            printf("\nTamanho alterado com sucesso!");
+            printf("\nTamanho alterado com sucesso!\n");
             break;
 
         case 3:
             printf("Digite o peso do produto: ");
             scanf("%f", &produto->peso);
             fflush(stdin);
-            printf("\nPeso alterado com sucesso!");
+            printf("\nPeso alterado com sucesso!\n");
             break;
 
         case 4:
             printf("Digite a altura do produto: ");
             scanf("%f", &produto->altura);
             fflush(stdin);
-            printf("\nAltura alterada com sucesso!");
+            printf("\nAltura alterada com sucesso!\n");
             break;
 
         case 5:
             printf("Digite a largura do produto: ");
             scanf("%f", &produto->largura);
             fflush(stdin);
-            printf("\nLargura alterada com sucesso!");
+            printf("\nLargura alterada com sucesso!\n");
             break;
 
         case 6:
             printf("Digite o preço do produto: ");
             scanf("%f", &produto->preco);
             fflush(stdin);
-            printf("\nPreço alterado com sucesso!");
+            printf("\nPreço alterado com sucesso!\n");
             break;
 
         case 7:
             printf("Digite o desconto do produto: ");
             scanf("%f", &produto->desconto);
             fflush(stdin);
-            printf("\nDesconto alterado com sucesso!");
+            printf("\nDesconto alterado com sucesso!\n");
             break;
 
         case 8:
@@ -153,15 +153,15 @@ int alterar_produto(Produto *produtos, char codigo[], int qtd_produtos)
                 &produto->data_validade.mes, 
                 &produto->data_validade.ano);
             fflush(stdin);
-            printf("\nData de validade alterada com sucesso!");
+            printf("\nData de validade alterada com sucesso!\n");
             break;
 
         case 9:
-            printf("\nAlteração cancelada.");
+            printf("\nAlteração cancelada.\n");
             break;
 
         default:
-            printf("\nOpção inválida.");
+            printf("\nOpção inválida.\n");
             break;
     }
     return 1;
@@ -223,10 +223,11 @@ int listar_produto_especifico(Produto *produtos, char codigo[], int qtd_produtos
 void submenu_produtos(Produto *produtos, int *qtd_produtos)
 {
     int opt;
-    char codigo[30];
+    char codigo[TAM_CODIGO];
 
     do
-    {
+    {   
+        system("cls");
         printf("\n---------- Submenu de Produtos ----------");
         printf("\n1. Listar Todos");
         printf("\n2. Listar um Produto Específico");
@@ -249,42 +250,42 @@ void submenu_produtos(Produto *produtos, int *qtd_produtos)
 
             case 2:
                 printf("\nListando um produto específico...\n");
-                printf("\nInsira o código do produto: ");
+                printf("\nDigite o código do produto: ");
                 gets(codigo);
 
                 if (!(listar_produto_especifico(produtos, codigo, *qtd_produtos)))
-                    printf("\nCódigo não encontrado.");
+                    printf("\nCódigo não encontrado.\n");
                 break;
 
             case 3:
                 printf("\nIncluindo um novo produto...\n");
 
                 if (incluir_produto(produtos, qtd_produtos))
-                    printf("\nProduto cadastrado com sucesso.");
+                    printf("\nProduto cadastrado com sucesso.\n");
                 else
-                    printf("\nCódigo já cadastrado.");
+                    printf("\nCódigo já cadastrado.\n");
                 break;
 
             case 4:
                 printf("\nAlterando dados de um produto...\n");
-                printf("\nInsira o código do produto: ");
+                printf("\nDigite o código do produto: ");
                 gets(codigo);
                 
                 if (alterar_produto(produtos, codigo, *qtd_produtos))
-                    printf("Produto alterado com sucesso.");
+                    printf("\nProduto alterado com sucesso.\n");
                 else
-                    printf("Código não encontrado.");
+                    printf("\nCódigo não encontrado.\n");
                 break;
 
             case 5:
                 printf("\nExcluindo um produto...\n");
-                printf("\nInsira o código do produto: ");
+                printf("\nDigite o código do produto: ");
                 gets(codigo);
 
                 if (excluir_produto(produtos, codigo, qtd_produtos))
-                    printf("\nProduto excluído com sucesso.");
+                    printf("\nProduto excluído com sucesso.\n");
                 else
-                    printf("\nCódigo não encontrado");
+                    printf("\nCódigo não encontrado\n");
                 break;
 
             case 6:
@@ -295,5 +296,8 @@ void submenu_produtos(Produto *produtos, int *qtd_produtos)
                 printf("\nOpção inválida. Por favor, escolha uma opção de 1 a 6.\n");
                 break;
         }
+
+        printf("\nPressione Enter para continuar...");
+        getchar();
     } while (opt != 6); 
 }

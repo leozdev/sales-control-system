@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "../headers/func_clientes.h"
+#include "../headers/defines.h"
 
 int buscar_cliente(Cliente *clientes, char cpf[], int qtd_clientes)
 {
@@ -17,7 +18,7 @@ int buscar_cliente(Cliente *clientes, char cpf[], int qtd_clientes)
 void cadastrar_email(Cliente *cliente)
 {
     char confirma;
-    char email[100];
+    char email[TAM_EMAIL];
 
     do
     {
@@ -43,7 +44,7 @@ void cadastrar_email(Cliente *cliente)
 void cadastrar_telefone(Cliente *cliente)
 {
     char confirma;
-    char telefone[20];
+    char telefone[TAM_TELEFONE];
 
     do
     {
@@ -69,7 +70,7 @@ void cadastrar_telefone(Cliente *cliente)
 
 int incluir_cliente(Cliente *clientes, int *qtd_clientes)
 {   
-    char cpf[12];
+    char cpf[TAM_CPF];
 
     Cliente *cliente = (clientes + *qtd_clientes);
 
@@ -168,7 +169,7 @@ void alterar_email(Cliente *cliente)
         return;
     }
 
-    char novo_email[50];
+    char novo_email[TAM_EMAIL];
     printf("\nDigite o email: ");
     gets(novo_email);
 
@@ -190,7 +191,7 @@ void alterar_telefone(Cliente *cliente)
     }
 
     int idx;
-    printf("Escolha o telefone para alterar (1 a %d): ", cliente->qtd_telefones);
+    printf("\nEscolha o telefone para alterar (1 a %d): ", cliente->qtd_telefones);
     scanf("%d", &idx);
     fflush(stdin);
     
@@ -200,7 +201,7 @@ void alterar_telefone(Cliente *cliente)
         return;
     }
 
-    char novo_telefone[15];
+    char novo_telefone[TAM_TELEFONE];
     printf("\nDigite o telefone: ");
     gets(novo_telefone);
 
@@ -223,10 +224,11 @@ int alterar_cliente(Cliente *clientes, char cpf[], int qtd_clientes)
     switch (opt)
     {
         case 1:
-            printf("\nDigite o nome: %s", (clientes + idx)->nome);
+            printf("\nDigite o nome: ", (clientes + idx)->nome);
             gets(cliente->nome);
             printf("\nNome atualizado com sucesso!");
             break;
+
         case 2:
             printf("\nDigite a data de nascimento (DD/MM/AAAA): ");
             scanf("%d/%d/%d", 
@@ -236,27 +238,34 @@ int alterar_cliente(Cliente *clientes, char cpf[], int qtd_clientes)
             fflush(stdin);
             printf("\nData de nascimento atualizado com sucesso!");
             break;
+
         case 3:
-            printf("\nDigite o sexo (M/F): ");
+            printf("\nDigite o sexo: ");
             gets(cliente->sexo);
             printf("\nSexo atualizado com sucesso!");
             break;
+
         case 4:
             printf("\nDigite o salário: ");
             scanf("%f", &cliente->salario);
+            fflush(stdin);
             printf("\nSalário atualizado com sucesso!");
             break;
+
         case 5:
             alterar_email(cliente);
             printf("\nEmail atualizado com sucesso!");
             break;
+
         case 6:
             alterar_telefone(cliente);
             printf("\nTelefone atualizado com sucesso!");
             break;
+
         case 7:
             printf("\nAlteração cancelada.");
             break;
+            
         default:
             printf("\nOpção inválida.");
             break;
@@ -332,9 +341,10 @@ int listar_cliente_especifico(Cliente *clientes, char cpf[], int qtd_clientes)
 void submenu_clientes(Cliente *clientes, int *qtd_clientes)
 {   
     int opt;
-    char cpf[12];
+    char cpf[TAM_CPF];
     do
-    {
+    {   
+        system("cls");
         printf("\n---------- Submenu de Clientes ----------");
         printf("\n1. Listar Todos");
         printf("\n2. Listar um Cliente Específico");
@@ -356,7 +366,7 @@ void submenu_clientes(Cliente *clientes, int *qtd_clientes)
 
             case 2:
                 printf("\nListando um cliente específico...\n");
-                printf("\nInsira o CPF do cliente: ");
+                printf("\nDigite o CPF do cliente: ");
                 gets(cpf);
 
                 if (!(listar_cliente_especifico(clientes, cpf, *qtd_clientes)))
@@ -374,7 +384,7 @@ void submenu_clientes(Cliente *clientes, int *qtd_clientes)
 
             case 4:
                 printf("\nAlterando dados de um cliente...\n");
-                printf("\nInsira o CPF do cliente: ");
+                printf("\nDigite o CPF do cliente: ");
                 gets(cpf);
 
                 if (!(alterar_cliente(clientes, cpf, *qtd_clientes)))
@@ -383,7 +393,7 @@ void submenu_clientes(Cliente *clientes, int *qtd_clientes)
 
             case 5:
                 printf("\nExcluindo cliente...\n");
-                printf("\nInsira o CPF do cliente: ");
+                printf("\nDigite o CPF do cliente: ");
                 gets(cpf);
 
                 if ((excluir_cliente(clientes, cpf, qtd_clientes)))
@@ -400,5 +410,8 @@ void submenu_clientes(Cliente *clientes, int *qtd_clientes)
                 printf("\nOpção inválida. Por favor, escolha uma opção de 1 a 6.\n");
                 break;
         }
+
+        printf("\nPressione Enter para continuar...");
+        getchar();
     } while (opt != 6);
 }

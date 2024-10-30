@@ -11,8 +11,9 @@ int relatorio_cliente_x_telefones(Cliente *clientes, int qtd_clientes, int x_tel
 {   
     int i;
     for (i = 0; i < qtd_clientes; i++) {
-        if ((clientes + i)->qtd_telefones > x_telefones)
+        if ((clientes + i)->qtd_telefones > x_telefones){
             printf(""); //TODO: TERMINAR
+        }
     }
     return 1;
 }
@@ -27,25 +28,22 @@ int relatorio_produtos_vencidos(Produto *produtos, int qtd_produtos)
     int mes = tm.tm_mon + 1;
     int ano = tm.tm_year + 1900;
 
-    int i;
+    int i, count;
     for (i = 0; i < qtd_produtos; i++) {
         struct tm data_valid_produto = {0};
         data_valid_produto.tm_mday = (*(produtos + i)).data_validade.dia;
         data_valid_produto.tm_mon = (*(produtos + i)).data_validade.mes - 1;
         data_valid_produto.tm_year = (*(produtos + i)).data_validade.ano - 1900;
 
-    time_t time_validade = mktime(&data_valid_produto);
-    time_t time_atual = mktime(&tm);
+        time_t time_validade = mktime(&data_valid_produto);
+        time_t time_atual = mktime(&tm);
 
-    if (time_validade < time_atual) {
-            printf("O %s está vencido!\n", (*(produtos + i)).codigo);
-        } else if (time_validade == time_atual) {
-            printf("O %s vence hoje!\n", (*(produtos + i)).codigo);
-        } else {
-            printf("O %s ainda é válido.\n", (*(produtos + i)).codigo);
-        }
+        if (time_validade < time_atual) {
+                printf("O %s está vencido!\n", (*(produtos + i)).codigo);
+                count++;
+            }
+        
     }
-
     return 1;
 }
 
@@ -81,7 +79,8 @@ void submenu_relatorios()
 {   
     int opt;
     do
-    {
+    {   
+        system("cls");
         printf("\n---------- Submenu de Relatórios ----------");
         printf("\n1. Relatório de Clientes com Mais de X Contatos Telefônicos");
         printf("\n2. Relatório de Produtos Vencidos");
@@ -96,13 +95,13 @@ void submenu_relatorios()
         {
         // TODO: TERMINAR
         case 1:
-            relatorio_cliente_x_telefones();
+            // relatorio_cliente_x_telefones();
             break;
         case 2:
-            relatorio_produtos_vencidos();
+            // relatorio_produtos_vencidos();
             break;
         case 3:
-            relatorio_vendas_periodo();
+            // relatorio_vendas_periodo();
             break;
         case 4:
             break;
@@ -110,5 +109,8 @@ void submenu_relatorios()
             printf("\nOpção inválida. Por favor, escolha uma opção de 1 a 4.\n");
             break;
         }
+
+        printf("\nPressione Enter para continuar...");
+        getchar();
     } while (opt != 4);
 }

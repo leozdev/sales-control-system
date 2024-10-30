@@ -7,10 +7,7 @@
 #include "../headers/func_vendas.h"
 #include "../headers/func_relatorio.h"
 #include "../headers/func_arquivos.h"
-
-#define TOTAL_CLIENTES 100
-#define TOTAL_PRODUTOS 100
-#define TOTAL_VENDAS 100
+#include "../headers/defines.h"
 
 int menu() 
 {
@@ -34,17 +31,26 @@ int main()
     Cliente *clientes = (Cliente *) malloc(TOTAL_CLIENTES * sizeof(Cliente));
     Produto *produtos = (Produto *) malloc(TOTAL_PRODUTOS * sizeof(Produto));
     Venda *vendas = (Venda *) malloc(TOTAL_VENDAS * sizeof(Venda));
+    Relatorio_telefones *relatorios_telefones = (Relatorio_telefones *) malloc(TOTAL_CLIENTES * sizeof(Relatorio_telefones));
+    Relatorio_validade *relatorios_validade = (Relatorio_validade *) malloc(TOTAL_PRODUTOS * sizeof(Relatorio_validade));
+    Relatorio_periodo *relatorios_periodo = (Relatorio_periodo *) malloc(TOTAL_VENDAS * sizeof(Relatorio_periodo));
 
-    if (clientes == NULL || produtos == NULL || vendas == NULL) {
+    if (clientes == NULL || produtos == NULL || vendas == NULL || 
+        relatorios_telefones == NULL || relatorios_validade == NULL || relatorios_periodo == NULL) {
         printf("\nErro na alocação de memória.\n");
         exit(1);
     }
 
     int qtd_clientes = 0, qtd_vendas = 0, qtd_produtos = 0;
 
+    // Carregar os dados para os registros
+    carregar_clientes(clientes, &qtd_clientes);
+    carregar_produtos(produtos, &qtd_produtos);
+
     int opt;
     do 
-    {
+    {   
+        system("cls");
         opt = menu();
         switch (opt) 
         {
@@ -69,13 +75,18 @@ int main()
                 break;
 
             default:
-                printf("\nOpção inválida. Por favor, escolha uma opção de 1 a 5.");
+                printf("\nOpção inválida. Por favor, escolha uma opção de 1 a 5.\n");
+                printf("\nPressione Enter para continuar...");
+                getchar();
                 break;
         }
+
     } while (opt != 5);
 
     // Salvar em arquivo binário os dados dos registros (Clientes, Produtos e Vendas)
-    salvar_clientes(clientes, qtd_clientes, "clientes.dat");
+    salvar_clientes(clientes, qtd_clientes);
+    salvar_produtos(produtos, qtd_produtos);
+
     // Libera a memória alocada dinamicamente para os emails e telefones de cada cliente
     int i, j, k;
     for (i = 0; i < qtd_clientes; i++) {
@@ -95,6 +106,9 @@ int main()
     free(clientes);
     free(vendas);
     free(produtos);
+    free(relatorios_telefones);
+    free(relatorios_validade);
+    free(relatorios_periodo);
 }
 
 // gcc -o projeto main.c func_clientes.c func_produtos.c func_vendas.c func_relatorio.c
