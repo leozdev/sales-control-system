@@ -1,0 +1,17 @@
+------ Relatório de clientes que possuem mais de '2' telefones ------
+
+	CPF: 42152711858
+	Nome: Leo Freits
+	Data de nascimento: 29/09/2004
+	Sexo: Masculino
+	Salário: 1900
+	Emails:
+		1. leofreeitas.lfm@gmail.com
+	Telefones:
+		1. 1
+		2. 2
+		3. 3
+		4. 4
+		5. 5
+
+-------------------------

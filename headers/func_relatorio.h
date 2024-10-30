@@ -11,21 +11,23 @@
 
 typedef struct
 {
-    Cliente *cliente;
     int x_telefones;
+    Cliente clientes[TOTAL_CLIENTES];
+    int qtd_clientes_relatorio;
 } Relatorio_telefones;
 
 typedef struct
 {
-    Produto *produto;
+    Produto produtos[TOTAL_PRODUTOS];
     Date data_atual;
+    int qtd_produtos_relatorio;
 } Relatorio_validade;
 
 typedef struct
 {
-    Cliente *cliente;
-    Produto *produto;
-    Venda *venda;
+    Cliente cliente[TOTAL_CLIENTES];
+    Produto produto[TOTAL_PRODUTOS];
+    Venda vendas[TOTAL_VENDAS];
     Date data_incio;
     Date data_fim;
 } Relatorio_periodo;
