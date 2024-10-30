@@ -84,9 +84,6 @@ int incluir_cliente(Cliente *clientes, int *qtd_clientes)
     scanf("%f", &cliente->salario);
     fflush(stdin);
 
-    cliente->qtd_emails = 0;
-    cliente->qtd_telefones = 0;
-
     cadastrar_email(cliente);
     cadastrar_telefone(cliente);
 

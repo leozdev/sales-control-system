@@ -55,7 +55,83 @@ void carregar_vendas(Venda *vendas, int *qtd_vendas)
 {
     FILE *arq = fopen(NOME_ARQ_VENDAS, "rb");
 
+    if (arq == NULL) 
+        return;
+        
     fread(qtd_vendas, sizeof(int), 1, arq);
     fread(vendas, sizeof(Venda), *qtd_vendas, arq);
     fclose(arq);
+}
+
+void salvar_relatorio_x_telefones(Relatorio_telefones *relatorio)
+{
+    FILE *arq = fopen(NOME_ARQ_RELATORIO_X_TELEFONES, "w");
+
+    char buffer[100];
+
+    sprintf(buffer, "------ Relatório de clientes que possuem mais de '%d' telefones ------\n", relatorio->x_telefones);
+    fputs(buffer, arq);
+
+    if (relatorio->qtd_clientes_relatorio < 1)
+        fputs("\nNenhum cliente.", arq);
+        
+
+    int i, j;
+    for (i = 0; i < relatorio->qtd_clientes_relatorio; i++) {
+        Cliente *cliente = (relatorio->clientes + i);
+
+        sprintf(buffer, "\n\tCPF: %s\n", cliente->cpf);
+        fputs(buffer, arq);
+
+        sprintf(buffer, "\tNome: %s\n", cliente->nome);
+        fputs(buffer, arq);
+
+        sprintf(buffer, "\tData de nascimento: %02d/%02d/%02d\n", cliente->data_nasc.dia, cliente->data_nasc.mes, cliente->data_nasc.ano);
+        fputs(buffer, arq);
+
+        sprintf(buffer, "\tSexo: %s\n", cliente->sexo);
+        fputs(buffer, arq);
+
+        sprintf(buffer, "\tSalário: %2.f\n", cliente->salario);
+        fputs(buffer, arq);
+
+        sprintf(buffer, "\tEmails:\n");
+        fputs(buffer, arq);
+        for (j = 0; j < cliente->qtd_emails; j++) {
+            sprintf(buffer, "\t\t%d. %s\n", j + 1, *(cliente->emails + j));
+            fputs(buffer, arq);
+        }
+
+        sprintf(buffer, "\tTelefones:\n");
+        fputs(buffer, arq);
+        for (j = 0; j < cliente->qtd_telefones; j++) {
+            sprintf(buffer, "\t\t%d. %s\n", j + 1, *(cliente->telefones + j));
+            fputs(buffer, arq);
+        }
+
+        fputs("\n-------------------------\n", arq);
+    }
+    fclose(arq);
+}
+
+void salvar_relatorio_prod_vencido(Relatorio_validade *relatorio)
+{
+    FILE *arq = fopen(NOME_ARQ_RELATORIO_PROD_VENCIDO, "w");
+
+    char buffer[100];
+
+    fputs("------ Relatório de produtos com a validade expirada ------\n", arq);
+
+    if (relatorio->qtd_produtos_relatorio < 1)
+        fputs("\nNenhum produto!\n", arq);
+
+    int i;
+    for (i = 0; i < relatorio->qtd_produtos_relatorio; i++) {
+        //TODO: TERMINAR
+    }
+}
+
+void salvar_relatorio_vendas_periodo(Relatorio_periodo *relatorio)
+{
+    //TODO: TERMINAR
 }

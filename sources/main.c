@@ -28,15 +28,16 @@ int main()
 {
     setlocale(LC_ALL, "pt.BR_UTF-8");
 
-    Cliente *clientes = (Cliente *) malloc(TOTAL_CLIENTES * sizeof(Cliente));
-    Produto *produtos = (Produto *) malloc(TOTAL_PRODUTOS * sizeof(Produto));
-    Venda *vendas = (Venda *) malloc(TOTAL_VENDAS * sizeof(Venda));
-    Relatorio_telefones *relatorios_telefones = (Relatorio_telefones *) malloc(TOTAL_CLIENTES * sizeof(Relatorio_telefones));
-    Relatorio_validade *relatorios_validade = (Relatorio_validade *) malloc(TOTAL_PRODUTOS * sizeof(Relatorio_validade));
-    Relatorio_periodo *relatorios_periodo = (Relatorio_periodo *) malloc(TOTAL_VENDAS * sizeof(Relatorio_periodo));
+    Cliente *clientes = (Cliente *) calloc(TOTAL_CLIENTES, sizeof(Cliente));
+    Produto *produtos = (Produto *) calloc(TOTAL_PRODUTOS, sizeof(Produto));
+    Venda *vendas = (Venda *) calloc(TOTAL_VENDAS, sizeof(Venda));
+
+    Relatorio_telefones *relatorio_telefones = (Relatorio_telefones *) calloc(1, sizeof(Relatorio_telefones));
+    Relatorio_validade *relatorio_validade = (Relatorio_validade *) calloc(1, sizeof(Relatorio_validade));
+    Relatorio_periodo *relatorio_periodo = (Relatorio_periodo *) calloc(1, sizeof(Relatorio_periodo));
 
     if (clientes == NULL || produtos == NULL || vendas == NULL || 
-        relatorios_telefones == NULL || relatorios_validade == NULL || relatorios_periodo == NULL) {
+        relatorio_telefones == NULL || relatorio_validade == NULL || relatorio_periodo == NULL) {
         printf("\nErro na alocação de memória.\n");
         exit(1);
     }
@@ -68,7 +69,8 @@ int main()
                 break;
                 
             case 4:
-                submenu_relatorios();
+                submenu_relatorios(relatorio_telefones, relatorio_validade, relatorio_periodo, 
+                                clientes, produtos, vendas, qtd_clientes, qtd_produtos, qtd_vendas);
                 break;
 
             case 5:
@@ -88,14 +90,16 @@ int main()
     salvar_clientes(clientes, qtd_clientes);
     salvar_produtos(produtos, qtd_produtos);
     salvar_vendas(vendas, qtd_vendas);
-
+    salvar_relatorio_x_telefones(relatorio_telefones);
+    // salvar_relatorio_prod_vencido(relatorio_validade);
+    // salvar_relatorio_vendas_periodo(relatorio_periodo);
 
     free(clientes);
     free(vendas);
     free(produtos);
-    free(relatorios_telefones);
-    free(relatorios_validade);
-    free(relatorios_periodo);
+    free(relatorio_telefones);
+    free(relatorio_validade);
+    free(relatorio_periodo);
 }
 
 // gcc -o projeto main.c func_clientes.c func_produtos.c func_vendas.c func_relatorio.c
