@@ -180,6 +180,7 @@ void submenu_vendas(Venda *vendas, int *qtd_vendas, Cliente *clientes, int *qtd_
     do
     {   
         system("cls");
+        printf("\n|| Sistema de Controle de Vendas ||\n");
         printf("\n---------- Submenu de Vendas ----------\n");
         printf("\n1. Listar Todas");
         printf("\n2. Listar uma Venda Específica");
@@ -214,7 +215,7 @@ void submenu_vendas(Venda *vendas, int *qtd_vendas, Cliente *clientes, int *qtd_
                 switch (incluir_venda(vendas, qtd_vendas, clientes, qtd_clientes, produtos, qtd_produtos))
                 {
                     case 1:
-                        printf("\nVenda cadastrada com sucesso!");
+                        printf("\nVenda cadastrada com sucesso!\n");
                         break;
                     
                     case -1:

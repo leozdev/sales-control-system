@@ -224,7 +224,8 @@ void submenu_produtos(Produto *produtos, int *qtd_produtos)
     do
     {   
         system("cls");
-        printf("\n---------- Submenu de Produtos ----------");
+        printf("\n|| Sistema de Controle de Vendas ||\n");
+        printf("\n---------- Submenu de Produtos ----------\n");
         printf("\n1. Listar Todos");
         printf("\n2. Listar um Produto Específico");
         printf("\n3. Incluir");

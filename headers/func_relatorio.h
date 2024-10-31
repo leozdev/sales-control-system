@@ -30,6 +30,7 @@ typedef struct
     Venda vendas[TOTAL_VENDAS];
     Date data_incio;
     Date data_fim;
+    int qtd_vendas_relatorio;
 } Relatorio_periodo;
 
 void submenu_relatorios();

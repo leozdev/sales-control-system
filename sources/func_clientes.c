@@ -297,7 +297,8 @@ void submenu_clientes(Cliente *clientes, int *qtd_clientes)
     do
     {   
         system("cls");
-        printf("\n---------- Submenu de Clientes ----------");
+        printf("\n|| Sistema de Controle de Vendas ||\n");
+        printf("\n---------- Submenu de Clientes ----------\n");
         printf("\n1. Listar Todos");
         printf("\n2. Listar um Cliente Específico");
         printf("\n3. Incluir");

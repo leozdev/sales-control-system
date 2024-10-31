@@ -12,7 +12,8 @@
 int menu() 
 {
     int opt;
-    printf("\n---------- MENU ----------");
+    printf("\n|| Sistema de Controle de Vendas ||\n");
+    printf("\n---------- MENU ----------\n");
     printf("\n1. Submenu de Clientes");
     printf("\n2. Submenu de Produtos");
     printf("\n3. Submenu de Vendas");
@@ -86,13 +87,20 @@ int main()
 
     } while (opt != 5);
 
-    // Salvar em arquivo binário os dados dos registros (Clientes, Produtos e Vendas)
-    salvar_clientes(clientes, qtd_clientes);
-    salvar_produtos(produtos, qtd_produtos);
-    salvar_vendas(vendas, qtd_vendas);
-    salvar_relatorio_x_telefones(relatorio_telefones);
-    // salvar_relatorio_prod_vencido(relatorio_validade);
-    // salvar_relatorio_vendas_periodo(relatorio_periodo);
+    // Salvar em arquivo binário os dados dos registros (Clientes, Produtos, Vendas, e Relatórios)
+    if (qtd_clientes > 1)
+        salvar_clientes(clientes, qtd_clientes);
+    if (qtd_produtos > 1)
+        salvar_produtos(produtos, qtd_produtos);
+    if (qtd_vendas > 1)
+        salvar_vendas(vendas, qtd_vendas);
+
+    if (relatorio_telefones->qtd_clientes_relatorio > 1)
+        salvar_relatorio_x_telefones(relatorio_telefones);
+    if (relatorio_validade->qtd_produtos_relatorio > 1)
+        salvar_relatorio_prod_vencido(relatorio_validade);
+    if (relatorio_periodo->qtd_vendas_relatorio > 1)
+        salvar_relatorio_vendas_periodo(relatorio_periodo);
 
     free(clientes);
     free(vendas);
@@ -102,4 +110,4 @@ int main()
     free(relatorio_periodo);
 }
 
-// gcc -o projeto main.c func_clientes.c func_produtos.c func_vendas.c func_relatorio.c
+//  gcc -o controle_de_vendas main.c func_clientes.c func_produtos.c func_vendas.c func_relatorio.c func_arquivos.c

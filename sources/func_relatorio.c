@@ -77,13 +77,13 @@ void submenu_relatorios(Relatorio_telefones *relatorio_cliente_x_telefones,
     do
     {   
         system("cls");
-        printf("\n---------- Submenu de Relatórios ----------");
+        printf("\n|| Sistema de Controle de Vendas ||\n");
+        printf("\n---------- Submenu de Relatórios ----------\n");
         printf("\n1. Relatório de Clientes com Mais de X Contatos Telefônicos");
         printf("\n2. Relatório de Produtos Vencidos");
         printf("\n3. Relatório de Vendas por Período");
         printf("\n4. Voltar ao Menu Principal");
-
-        printf("\nSelecione uma opção: ");
+        printf("\n\nSelecione uma opção: ");
         scanf("%d", &opt);
         fflush(stdin);
         
@@ -98,12 +98,13 @@ void submenu_relatorios(Relatorio_telefones *relatorio_cliente_x_telefones,
             fflush(stdin);
 
             gerar_relatorio_cliente_x_telefones(relatorio_cliente_x_telefones, clientes, qtd_clientes, x_telefones);
-            printf("Relatório gerado com sucesso!\n");
+            printf("\nRelatório gerado com sucesso!\n");
             break;
 
         case 2:
             printf("\nGerarando relatório de produtos com data de validade expirada...\n");
-            // relatorio_produtos_vencidos();
+            gerar_relatorio_produtos_vencidos(relatorio_produtos_vencidos, produtos, qtd_produtos);
+            printf("\nRelatório gerado com sucesso!\n");
             break;
 
         case 3:

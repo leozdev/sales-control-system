@@ -73,12 +73,12 @@ void salvar_relatorio_x_telefones(Relatorio_telefones *relatorio)
     fputs(buffer, arq);
 
     if (relatorio->qtd_clientes_relatorio < 1)
-        fputs("\nNenhum cliente.", arq);
+        fputs("\nNenhum cliente...", arq);
         
 
     int i, j;
     for (i = 0; i < relatorio->qtd_clientes_relatorio; i++) {
-        Cliente *cliente = (relatorio->clientes + i);
+        Cliente *cliente = relatorio->clientes + i;
 
         sprintf(buffer, "\n\tCPF: %s\n", cliente->cpf);
         fputs(buffer, arq);
@@ -123,12 +123,42 @@ void salvar_relatorio_prod_vencido(Relatorio_validade *relatorio)
     fputs("------ Relatório de produtos com a validade expirada ------\n", arq);
 
     if (relatorio->qtd_produtos_relatorio < 1)
-        fputs("\nNenhum produto!\n", arq);
+        fputs("\nNenhum produto...\n", arq);
 
     int i;
     for (i = 0; i < relatorio->qtd_produtos_relatorio; i++) {
-        //TODO: TERMINAR
+        Produto *produto = relatorio->produtos + i;
+
+        sprintf(buffer, "\nCódigo: %s", produto->codigo);
+        fputs(buffer, arq);
+
+        sprintf(buffer, "\nDescrição: %s", produto->descricao);
+        fputs(buffer, arq);
+
+        sprintf(buffer, "\nTamanho: %d", produto->tamanho);
+        fputs(buffer, arq);
+
+        sprintf(buffer, "\nPeso: %d", produto->peso);
+        fputs(buffer, arq);
+
+        sprintf(buffer, "\nAltura: %d", produto->altura);
+        fputs(buffer, arq);
+
+        sprintf(buffer, "\nLargura: %d", produto->largura);
+        fputs(buffer, arq);
+
+        sprintf(buffer, "\nPreço: R$%.2f", produto->preco);
+        fputs(buffer, arq);
+
+        sprintf(buffer, "\nDesconto: R$%.2f", produto->desconto);
+        fputs(buffer, arq);
+
+        sprintf(buffer, "\nData de validade: %02d/%02d/%02d", produto->data_validade.dia, produto->data_validade.mes, produto->data_validade.ano);
+        fputs(buffer, arq);
+
+        fputs("\n-------------------------\n", arq);
     }
+    fclose(arq);
 }
 
 void salvar_relatorio_vendas_periodo(Relatorio_periodo *relatorio)

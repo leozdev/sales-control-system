@@ -1,17 +1,13 @@
------- Relatório de clientes que possuem mais de '2' telefones ------
+------ Relatório de clientes que possuem mais de '0' telefones ------
 
 	CPF: 42152711858
-	Nome: Leo Freits
+	Nome: Leo Freitas
 	Data de nascimento: 29/09/2004
 	Sexo: Masculino
-	Salário: 1900
+	Salário: 20
 	Emails:
-		1. leofreeitas.lfm@gmail.com
+		1. leo.freitas@aluno.ifsp.edu.br
 	Telefones:
-		1. 1
-		2. 2
-		3. 3
-		4. 4
-		5. 5
+		1. (11) 93778-3716
 
 -------------------------
