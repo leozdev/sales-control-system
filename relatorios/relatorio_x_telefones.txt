@@ -1,13 +1,13 @@
------- Relatório de clientes que possuem mais de '0' telefones ------
+------ Relatório de clientes com mais de 0 telefones ------
 
-	CPF: 42152711858
-	Nome: Leo Freitas
-	Data de nascimento: 29/09/2004
-	Sexo: Masculino
-	Salário: 20
-	Emails:
-		1. leo.freitas@aluno.ifsp.edu.br
-	Telefones:
-		1. (11) 93778-3716
+CPF: 42152711858
+Nome: Leo Freitas
+Data de nascimento: 29/09/2004
+Sexo: Masculino
+Salário: R$ 20.00
+Emails:
+	1. leo.freitas@aluno.ifsp.edu.br
+Telefones:
+	1. (11) 93778-3716
 
 -------------------------

@@ -313,12 +313,14 @@ void submenu_clientes(Cliente *clientes, int *qtd_clientes)
         {
             case 1:
                 printf("\nListando todos os clientes cadastrados...\n");
+
                 if (!(listar_todos_clientes(clientes, *qtd_clientes)))
                     printf("\nNenhum cliente cadastrado!\n");
                 break;
 
             case 2:
                 printf("\nListando um cliente específico...\n");
+                
                 printf("\nDigite o CPF do cliente: ");
                 gets(cpf);
 

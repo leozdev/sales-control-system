@@ -184,12 +184,12 @@ void exibir_produto(Produto *produto)
 {
     printf("\n\tCódigo: %s", produto->codigo);
     printf("\n\tDescrição: %s", produto->descricao);
-    printf("\n\tTamanho: %.2f", produto->tamanho);
-    printf("\n\tPeso: %.2f", produto->peso);
-    printf("\n\tAltura: %.2f", produto->altura);
-    printf("\n\tLargura: %.2f", produto->altura);
-    printf("\n\tPreço: R$%.2f", produto->preco);
-    printf("\n\tDesconto: R$%.2f", produto->desconto);
+    printf("\n\tTamanho: %.2f cm", produto->tamanho);
+    printf("\n\tPeso: %.2f g", produto->peso);
+    printf("\n\tAltura: %.2f cm", produto->altura);
+    printf("\n\tLargura: %.2f g", produto->altura);
+    printf("\n\tPreço: R$ %.2f", produto->preco);
+    printf("\n\tDesconto: R$ %.2f", produto->desconto);
     printf("\n\tData de validade: %02d/%02d/%02d", produto->data_validade.dia, produto->data_validade.mes, produto->data_validade.ano);
     printf("\n\t---------------------------------\n");
 }
@@ -247,6 +247,7 @@ void submenu_produtos(Produto *produtos, int *qtd_produtos)
 
             case 2:
                 printf("\nListando um produto específico...\n");
+                
                 printf("\nDigite o código do produto: ");
                 gets(codigo);
 

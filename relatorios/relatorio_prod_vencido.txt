@@ -1,3 +1,13 @@
------- Relatório de produtos com a validade expirada ------
+------ Relatório de produtos com validade expirada ------
 
-Nenhum produto...
+Código: 01
+Descrição: Banana
+Tamanho: 0 cm
+Peso: 0 g
+Altura: 0 cm
+Largura: 0 cm
+Preço: R$ 15.00
+Desconto: R$ 0.00
+Data de validade: 15/10/2024
+
+-------------------------

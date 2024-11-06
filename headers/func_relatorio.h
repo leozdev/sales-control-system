@@ -25,8 +25,8 @@ typedef struct
 
 typedef struct
 {
-    Cliente cliente[TOTAL_CLIENTES];
-    Produto produto[TOTAL_PRODUTOS];
+    Cliente clientes[TOTAL_CLIENTES];
+    Produto produtos[TOTAL_PRODUTOS];
     Venda vendas[TOTAL_VENDAS];
     Date data_incio;
     Date data_fim;

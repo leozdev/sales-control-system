@@ -88,18 +88,19 @@ int main()
     } while (opt != 5);
 
     // Salvar em arquivo binário os dados dos registros (Clientes, Produtos, Vendas, e Relatórios)
-    if (qtd_clientes > 1)
+    if (qtd_clientes > 0)
         salvar_clientes(clientes, qtd_clientes);
-    if (qtd_produtos > 1)
+    if (qtd_produtos > 0)
         salvar_produtos(produtos, qtd_produtos);
-    if (qtd_vendas > 1)
+    if (qtd_vendas > 0)
         salvar_vendas(vendas, qtd_vendas);
 
-    if (relatorio_telefones->qtd_clientes_relatorio > 1)
+    // Gerando os relatórios ao final da execução do programa
+    if (relatorio_telefones->qtd_clientes_relatorio > 0)
         salvar_relatorio_x_telefones(relatorio_telefones);
-    if (relatorio_validade->qtd_produtos_relatorio > 1)
+    if (relatorio_validade->qtd_produtos_relatorio > 0)
         salvar_relatorio_prod_vencido(relatorio_validade);
-    if (relatorio_periodo->qtd_vendas_relatorio > 1)
+    if (relatorio_periodo->qtd_vendas_relatorio > 0)
         salvar_relatorio_vendas_periodo(relatorio_periodo);
 
     free(clientes);

@@ -1,0 +1,11 @@
+------ Relatório de vendas no período de 20/09/2004 a 20/10/2004 ------
+
+	Cliente: Leo Freitas
+	CPF: 42152711858
+	Código: 01
+	Descrição: Banana
+	Data da Venda: 29/09/2004
+	Hora da Venda: 12:0
+	Total da Venda: R$ 200
+
+	-------------------------

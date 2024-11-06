@@ -18,47 +18,35 @@ int buscar_venda(Venda *vendas, char cpf_cliente[], char codigo_produto[], Date 
     return -1;
 }
 
-
-void ler_dados_venda(char cpf_cliente[], char codigo_produto[], Date *data_venda, Hora *hora_venda)
-{
-    printf("\nDigite o CPF do cliente: ");
-    gets(cpf_cliente);
-
-    printf("Digite o código do produto: ");
-    gets(codigo_produto);
-
-    printf("Digite a data da venda (DD/MM/AAAA): ");
-    scanf("%d/%d/%d",
-        &data_venda->dia,
-        &data_venda->mes,
-        &data_venda->ano);
-    fflush(stdin);
-
-    printf("Digite a hora da venda (Horas:Minutos): ");
-    scanf("%d:%d",
-        &hora_venda->horas,
-        &hora_venda->minutos);
-    fflush(stdin);
-}
-
-
 int incluir_venda(Venda *vendas, int *qtd_vendas, Cliente *clientes, int *qtd_clientes, Produto *produtos, int *qtd_produtos)
 {   
     char cpf_cliente[TAM_CPF], codigo_produto[TAM_CODIGO]; 
     Date data_venda;
     Hora hora_venda;
 
-    ler_dados_venda(cpf_cliente, codigo_produto, &data_venda, &hora_venda);
-
-    // Verifica se o cliente existe
+    printf("\nDigite o CPF do cliente: ");
+    gets(cpf_cliente);
     if (buscar_cliente(clientes, cpf_cliente, *qtd_clientes) == -1)
         return -1;
 
-    // Verifica se o produto existe
+    printf("Digite o código do produto: ");
+    gets(codigo_produto);
     if (buscar_produto(produtos, codigo_produto, *qtd_produtos) == -1)
         return -2;
 
-    // Verifica se a venda já está cadastrada
+    printf("Digite a data da venda (DD/MM/AAAA): ");
+    scanf("%d/%d/%d",
+        &data_venda.dia,
+        &data_venda.mes,
+        &data_venda.ano);
+    fflush(stdin);
+
+    printf("Digite a hora da venda (Horas:Minutos): ");
+    scanf("%d:%d",
+        &hora_venda.horas,
+        &hora_venda.minutos);
+    fflush(stdin);
+
     if (buscar_venda(vendas, cpf_cliente, codigo_produto, data_venda, hora_venda, *qtd_vendas) != -1)
         return -3;
     
@@ -69,14 +57,13 @@ int incluir_venda(Venda *vendas, int *qtd_vendas, Cliente *clientes, int *qtd_cl
     venda->data_venda = data_venda;
     venda->hora_venda = hora_venda;
 
-    printf("Digite o valor da venda: R$");
+    printf("Digite o valor da venda: R$ ");
     scanf("%f", &venda->valor_venda);
     fflush(stdin);
 
     (*qtd_vendas)++;
     return 1;
 }
-
 
 int menu_alteracao_venda()
 {   
@@ -103,7 +90,7 @@ int alterar_venda(Venda *vendas, char cpf_cliente[], char codigo_produto[], Date
     switch (opt)
     {
         case 1:
-            printf("Digite o valor da venda: R$");
+            printf("Digite o valor da venda: R$ ");
             scanf("%f", &venda->valor_venda);
             fflush(stdin);
             break;
@@ -116,7 +103,6 @@ int alterar_venda(Venda *vendas, char cpf_cliente[], char codigo_produto[], Date
     }
     return 1;
 }
-
 
 int excluir_venda(Venda *vendas, char cpf_cliente[], char codigo_produto[], Date data, Hora hora, int *qtd_vendas)
 {   
@@ -134,14 +120,13 @@ int excluir_venda(Venda *vendas, char cpf_cliente[], char codigo_produto[], Date
     return 1;
 }
 
-
 void exibir_venda(const Venda *venda) 
 {
     printf("\n\tCPF do cliente: %s", venda->cpf_cliente);
     printf("\n\tCódigo do produto: %s", venda->codigo_produto);
     printf("\n\tData da venda: %02d/%02d/%04d", venda->data_venda.dia, venda->data_venda.mes, venda->data_venda.ano);
     printf("\n\tHora da venda: %02d:%02d", venda->hora_venda.horas, venda->hora_venda.minutos);
-    printf("\n\tValor da venda: R$%.2f", venda->valor_venda);
+    printf("\n\tValor da venda: R$ %.2f", venda->valor_venda);
     printf("\n\t---------------------------------\n");
 }
 
@@ -169,6 +154,27 @@ int listar_venda_especifica(Venda *vendas, char cpf_cliente[], char codigo_produ
     return 1;
 }
 
+void ler_dados_venda(char cpf_cliente[], char codigo_produto[], Date *data_venda, Hora *hora_venda)
+{
+    printf("\nDigite o CPF do cliente: ");
+    gets(cpf_cliente);
+
+    printf("Digite o código do produto: ");
+    gets(codigo_produto);
+
+    printf("Digite a data da venda (DD/MM/AAAA): ");
+    scanf("%d/%d/%d",
+        &data_venda->dia,
+        &data_venda->mes,
+        &data_venda->ano);
+    fflush(stdin);
+
+    printf("Digite a hora da venda (Horas:Minutos): ");
+    scanf("%d:%d",
+        &hora_venda->horas,
+        &hora_venda->minutos);
+    fflush(stdin);
+}
 
 void submenu_vendas(Venda *vendas, int *qtd_vendas, Cliente *clientes, int *qtd_clientes, Produto *produtos, int *qtd_produtos)
 {   
