@@ -1,11 +1,21 @@
------- Relatório de vendas no período de 20/09/2004 a 20/10/2004 ------
+------ Relatório de vendas no período de 01/01/2000 a 07/11/2024 ------
 
-	Cliente: Leo Freitas
+	Cliente: Leo
 	CPF: 42152711858
-	Código: 01
+	Código: 001
 	Descrição: Banana
-	Data da Venda: 29/09/2004
-	Hora da Venda: 12:0
-	Total da Venda: R$ 200
+	Data da Venda: 05/11/2024
+	Hora da Venda: 12:00
+	Total da Venda: R$ 20
+
+	-------------------------
+
+	Cliente: Norman Sabino
+	CPF: 83002588687
+	Código: 002
+	Descrição: Morango Guloso
+	Data da Venda: 06/11/2024
+	Hora da Venda: 14:00
+	Total da Venda: R$ 30
 
 	-------------------------

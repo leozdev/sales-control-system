@@ -139,16 +139,16 @@ void salvar_relatorio_prod_vencido(Relatorio_validade *relatorio)
         sprintf(buffer, "\tDescrição: %s\n", produto->descricao);
         fputs(buffer, arq);
 
-        sprintf(buffer, "\tTamanho: %d cm\n", produto->tamanho);
+        sprintf(buffer, "\tTamanho: %2.f cm\n", produto->tamanho);
         fputs(buffer, arq);
 
-        sprintf(buffer, "\tPeso: %d g\n", produto->peso);
+        sprintf(buffer, "\tPeso: %2.f g\n", produto->peso);
         fputs(buffer, arq);
 
-        sprintf(buffer, "\tAltura: %d cm\n", produto->altura);
+        sprintf(buffer, "\tAltura: %2.f cm\n", produto->altura);
         fputs(buffer, arq);
 
-        sprintf(buffer, "\tLargura: %d cm\n", produto->largura);
+        sprintf(buffer, "\tLargura: %2.f cm\n", produto->largura);
         fputs(buffer, arq);
 
         sprintf(buffer, "\tPreço: R$ %.2f\n", produto->preco);
@@ -187,22 +187,22 @@ void salvar_relatorio_vendas_periodo(Relatorio_periodo *relatorio)
         Produto *produto = (relatorio->produtos + i);
         Venda *venda = (relatorio->vendas + i);
 
-        sprintf(buffer, "\n\tCliente: %s\n", cliente->nome);
+        sprintf(buffer, "\n\tNome do Cliente: %s\n", cliente->nome);
         fputs(buffer, arq);
 
-        sprintf(buffer, "\tCPF: %s\n", cliente->cpf);
+        sprintf(buffer, "\tCPF do Cliente: %s\n", cliente->cpf);
         fputs(buffer, arq);
 
-        sprintf(buffer, "\tCódigo: %s\n", produto->codigo);
+        sprintf(buffer, "\tCódigo do Produto: %s\n", produto->codigo);
         fputs(buffer, arq);
 
-        sprintf(buffer, "\tDescrição: %s\n", produto->descricao);
+        sprintf(buffer, "\tDescrição do Produto: %s\n", produto->descricao);
         fputs(buffer, arq);
 
         sprintf(buffer, "\tData da Venda: %02d/%02d/%04d\n", venda->data_venda.dia, venda->data_venda.mes, venda->data_venda.ano);
         fputs(buffer, arq);
 
-        sprintf(buffer, "\tHora da Venda: %d:%d\n", venda->hora_venda.horas, venda->hora_venda.minutos);
+        sprintf(buffer, "\tHora da Venda: %02d:%02d\n", venda->hora_venda.horas, venda->hora_venda.minutos);
         fputs(buffer, arq);
 
         sprintf(buffer, "\tTotal da Venda: R$ %2.f\n", venda->valor_venda);

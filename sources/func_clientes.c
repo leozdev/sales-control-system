@@ -114,7 +114,7 @@ void listar_telefones(Cliente *cliente)
 int menu_alteracao_cliente()
 {
     int opt;
-    printf("\n--- Opções de Alteração de Clientes ---");
+    printf("\n--- Opções de Alteração de Clientes ---\n");
     printf("\n1. Alterar nome");
     printf("\n2. Alterar data de nascimento");
     printf("\n3. Alterar o sexo");
@@ -189,7 +189,7 @@ int alterar_cliente(Cliente *clientes, char cpf[], int qtd_clientes)
         case 1:
             printf("\nDigite o nome: ", (clientes + idx)->nome);
             gets(cliente->nome);
-            printf("\nNome atualizado com sucesso!");
+            printf("\nNome atualizado com sucesso!\n");
             break;
 
         case 2:
@@ -199,38 +199,38 @@ int alterar_cliente(Cliente *clientes, char cpf[], int qtd_clientes)
                 &cliente->data_nasc.mes, 
                 &cliente->data_nasc.ano);
             fflush(stdin);
-            printf("\nData de nascimento atualizado com sucesso!");
+            printf("\nData de nascimento atualizado com sucesso!\n");
             break;
 
         case 3:
             printf("\nDigite o sexo: ");
             gets(cliente->sexo);
-            printf("\nSexo atualizado com sucesso!");
+            printf("\nSexo atualizado com sucesso!\n");
             break;
 
         case 4:
             printf("\nDigite o salário: ");
             scanf("%f", &cliente->salario);
             fflush(stdin);
-            printf("\nSalário atualizado com sucesso!");
+            printf("\nSalário atualizado com sucesso!\n");
             break;
 
         case 5:
             alterar_email(cliente);
-            printf("\nEmail atualizado com sucesso!");
+            printf("\nEmail atualizado com sucesso!\n");
             break;
 
         case 6:
             alterar_telefone(cliente);
-            printf("\nTelefone atualizado com sucesso!");
+            printf("\nTelefone atualizado com sucesso!\n");
             break;
 
         case 7:
-            printf("\nAlteração cancelada.");
+            printf("\nAlteração cancelada.\n");
             break;
             
         default:
-            printf("\nOpção inválida.");
+            printf("\nOpção inválida.\n");
             break;
     }
     return 1;
@@ -261,6 +261,7 @@ void exibir_cliente(Cliente *cliente)
     printf("\n\tNome: %s", cliente->nome);
     printf("\n\tData de nascimento: %02d/%02d/%02d", cliente->data_nasc.dia, cliente->data_nasc.mes, cliente->data_nasc.ano);
     printf("\n\tSexo: %s", cliente->sexo);
+    printf("\n\tSalário: R$ %2.f", cliente->salario);
     listar_emails(cliente);
     listar_telefones(cliente);
     printf("\n\t---------------------------------\n");

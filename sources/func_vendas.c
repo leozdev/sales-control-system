@@ -68,7 +68,7 @@ int incluir_venda(Venda *vendas, int *qtd_vendas, Cliente *clientes, int *qtd_cl
 int menu_alteracao_venda()
 {   
     int opt;
-    printf("\n--- Opções de Alteração de Vendas ---");
+    printf("\n--- Opções de Alteração de Vendas ---\n");
     printf("\n1. Valor da venda");
     printf("\n2. Cancelar alteração");
     printf("\n\nSelecione uma opção: ");

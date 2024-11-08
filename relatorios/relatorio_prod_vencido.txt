@@ -1,13 +1,25 @@
 ------ Relatório de produtos com validade expirada ------
 
-Código: 01
-Descrição: Banana
-Tamanho: 0 cm
-Peso: 0 g
-Altura: 0 cm
-Largura: 0 cm
-Preço: R$ 15.00
-Desconto: R$ 0.00
-Data de validade: 15/10/2024
+	Código: 001
+	Descrição: Banana
+	Tamanho: 20 cm
+	Peso: 20 g
+	Altura: 20 cm
+	Largura: 20 cm
+	Preço: R$ 10.00
+	Desconto: R$ 0.00
+	Data de validade: 17/09/2005
+
+-------------------------
+
+	Código: 002
+	Descrição: Morango Guloso
+	Tamanho: 10 cm
+	Peso: 10 g
+	Altura: 10 cm
+	Largura: 10 cm
+	Preço: R$ 15.00
+	Desconto: R$ 0.00
+	Data de validade: 07/11/2024
 
 -------------------------

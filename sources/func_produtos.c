@@ -28,27 +28,27 @@ int incluir_produto(Produto *produtos, int *qtd_produtos)
     printf("Digite a descrição do produto: ");
     gets(produto->descricao);
     
-    printf("Digite o tamanho do produto: ");
+    printf("Digite o tamanho do produto (cm): ");
     scanf("%f", &produto->tamanho);
     fflush(stdin);
 
-    printf("Digite o peso do produto: ");
+    printf("Digite o peso do produto (g): ");
     scanf("%f", &produto->peso);
     fflush(stdin);
 
-    printf("Digite a altura do produto: ");
+    printf("Digite a altura do produto (cm): ");
     scanf("%f", &produto->altura);
     fflush(stdin);
 
-    printf("Digite a largura do produto: ");
+    printf("Digite a largura do produto (cm): ");
     scanf("%f", &produto->largura);
     fflush(stdin);
 
-    printf("Digite o preço do produto: ");
+    printf("Digite o preço do produto: R$ ");
     scanf("%f", &produto->preco);
     fflush(stdin);
 
-    printf("Digite o desconto do produto: ");
+    printf("Digite o desconto do produto: R$ ");
     scanf("%f", &produto->desconto);
     fflush(stdin);
 
@@ -67,7 +67,7 @@ int incluir_produto(Produto *produtos, int *qtd_produtos)
 int menu_alteracao_produto()
 {   
     int opt;
-    printf("\n--- Opções de Alteração de Produto ---");
+    printf("\n--- Opções de Alteração de Produto ---\n");
     printf("\n1. Alterar a descrição");
     printf("\n2. Alterar o tamanho");
     printf("\n3. Alterar o peso");
