@@ -1,0 +1,1 @@
+------ Relatório de vendas no período de DD/MM/AAAA a DD/MM/AAAA ------
