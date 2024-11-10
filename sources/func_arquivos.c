@@ -111,7 +111,7 @@ void salvar_relatorio_x_telefones(Relatorio_telefones *relatorio)
             fputs(buffer, arq);
         }
 
-        fputs("\n-------------------------\n", arq);
+        fputs("\n\t-------------------------\n", arq);
     }
     fclose(arq);
 }
@@ -139,16 +139,16 @@ void salvar_relatorio_prod_vencido(Relatorio_validade *relatorio)
         sprintf(buffer, "\tDescrição: %s\n", produto->descricao);
         fputs(buffer, arq);
 
-        sprintf(buffer, "\tTamanho: %2.f cm\n", produto->tamanho);
+        sprintf(buffer, "\tTamanho: %.2f cm\n", produto->tamanho);
         fputs(buffer, arq);
 
-        sprintf(buffer, "\tPeso: %2.f g\n", produto->peso);
+        sprintf(buffer, "\tPeso: %.2f g\n", produto->peso);
         fputs(buffer, arq);
 
-        sprintf(buffer, "\tAltura: %2.f cm\n", produto->altura);
+        sprintf(buffer, "\tAltura: %.2f cm\n", produto->altura);
         fputs(buffer, arq);
 
-        sprintf(buffer, "\tLargura: %2.f cm\n", produto->largura);
+        sprintf(buffer, "\tLargura: %.2f cm\n", produto->largura);
         fputs(buffer, arq);
 
         sprintf(buffer, "\tPreço: R$ %.2f\n", produto->preco);
@@ -160,7 +160,7 @@ void salvar_relatorio_prod_vencido(Relatorio_validade *relatorio)
         sprintf(buffer, "\tData de validade: %02d/%02d/%04d\n", produto->data_validade.dia, produto->data_validade.mes, produto->data_validade.ano);
         fputs(buffer, arq);
 
-        fputs("\n-------------------------\n", arq);
+        fputs("\n\t-------------------------\n", arq);
     }
     fclose(arq);
 }
@@ -205,7 +205,7 @@ void salvar_relatorio_vendas_periodo(Relatorio_periodo *relatorio)
         sprintf(buffer, "\tHora da Venda: %02d:%02d\n", venda->hora_venda.horas, venda->hora_venda.minutos);
         fputs(buffer, arq);
 
-        sprintf(buffer, "\tTotal da Venda: R$ %2.f\n", venda->valor_venda);
+        sprintf(buffer, "\tTotal da Venda: R$ %.2f\n", venda->valor_venda);
         fputs(buffer, arq);
 
         fputs("\n\t-------------------------\n", arq);

@@ -27,7 +27,7 @@ int menu()
 
 int main() 
 {
-    setlocale(LC_ALL, "pt.BR_UTF-8");
+    setlocale(LC_ALL, "pt_BR.UTF-8");
 
     Cliente *clientes = (Cliente *) calloc(TOTAL_CLIENTES, sizeof(Cliente));
     Produto *produtos = (Produto *) calloc(TOTAL_PRODUTOS, sizeof(Produto));
@@ -88,12 +88,9 @@ int main()
     } while (opt != 5);
 
     // Salvar em arquivo binário os dados dos registros (Clientes, Produtos, Vendas, e Relatórios)
-    if (qtd_clientes > 0)
-        salvar_clientes(clientes, qtd_clientes);
-    if (qtd_produtos > 0)
-        salvar_produtos(produtos, qtd_produtos);
-    if (qtd_vendas > 0)
-        salvar_vendas(vendas, qtd_vendas);
+    salvar_clientes(clientes, qtd_clientes);
+    salvar_produtos(produtos, qtd_produtos);
+    salvar_vendas(vendas, qtd_vendas);
 
     // Gerando os relatórios ao final da execução do programa
     if (relatorio_telefones->qtd_clientes_relatorio > 0)

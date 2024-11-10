@@ -1,28 +1,17 @@
------- Relatório de clientes com mais de 0 telefones ------
+------ Relatório de clientes com mais de 3 telefones ------
 
 	CPF: 42152711858
-	Nome: Leo
-	Data de nascimento: 17/09/2005
+	Nome: Leo Freitas
+	Data de nascimento: 29/09/2004
 	Sexo: Masculino
-	Salário: R$ 25000.00
+	Salário: R$ 1900.00
 	Emails:
-	1. leozin@gmail.com
-	2. leofreeitas.lfm@gmail.com
+	1. leo
 	Telefones:
-	1. (11) 93778-3716
-	2. (11) 99988-5597
-
--------------------------
-
-	CPF: 83002588687
-	Nome: Norman Sabino
-	Data de nascimento: 21/07/1974
-	Sexo: Masculino
-	Salário: R$ 40.00
-	Emails:
-	1. nsabino@gmail.com
-	Telefones:
-	1. (11) 98266-0563
-	2. (11) 3719-4100
+	1. 11
+	2. 12
+	3. 13
+	4. 14
+	5. 15
 
 -------------------------

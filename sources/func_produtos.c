@@ -10,7 +10,6 @@ int buscar_produto(Produto *produtos, char codigo[], int qtd_produtos)
     return -1;
 }
 
-
 int incluir_produto(Produto *produtos, int *qtd_produtos)
 {
     char codigo[TAM_CODIGO];
@@ -62,7 +61,6 @@ int incluir_produto(Produto *produtos, int *qtd_produtos)
     (*qtd_produtos)++;
     return 1;
 }
-
 
 int menu_alteracao_produto()
 {   
@@ -163,7 +161,6 @@ int alterar_produto(Produto *produtos, char codigo[], int qtd_produtos)
     return 1;
 }
 
-
 int excluir_produto(Produto *produtos, char codigo[], int *qtd_produtos)
 {   
     int idx = buscar_produto(produtos, codigo, *qtd_produtos);
@@ -178,7 +175,6 @@ int excluir_produto(Produto *produtos, char codigo[], int *qtd_produtos)
     (*qtd_produtos)--;
     return 1;
 }
-
 
 void exibir_produto(Produto *produto)
 {
@@ -199,6 +195,7 @@ int listar_todos_produtos(Produto *produtos, int qtd_produtos)
     if (qtd_produtos < 1)
         return 0;
     
+    printf("\nProdutos:\n");
     int i;
     for (i = 0; i < qtd_produtos; i++) {
         exibir_produto(produtos+i);
@@ -211,10 +208,10 @@ int listar_produto_especifico(Produto *produtos, char codigo[], int qtd_produtos
     if (idx == -1)
         return 0;
 
+    printf("\nProduto:\n");
     exibir_produto(produtos+idx);
     return 1;
 }
-
 
 void submenu_produtos(Produto *produtos, int *qtd_produtos)
 {

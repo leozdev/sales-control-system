@@ -52,7 +52,6 @@ void cadastrar_telefone(Cliente *cliente)
         printf("\nLimite de telefones atingido para este cliente.\n");
 }
 
-
 int incluir_cliente(Cliente *clientes, int *qtd_clientes)
 {   
     char cpf[TAM_CPF];
@@ -91,7 +90,6 @@ int incluir_cliente(Cliente *clientes, int *qtd_clientes)
     return 1;
 }
 
-
 void listar_emails(Cliente *cliente)
 {
     printf("\n\tEmails cadastrados:");
@@ -109,7 +107,6 @@ void listar_telefones(Cliente *cliente)
         printf("\n\t%d. %s", i + 1,  (cliente->telefones + i));
     }
 }
-
 
 int menu_alteracao_cliente()
 {
@@ -236,7 +233,6 @@ int alterar_cliente(Cliente *clientes, char cpf[], int qtd_clientes)
     return 1;
 }
 
-
 int excluir_cliente(Cliente *clientes, char cpf[], int *qtd_clientes) 
 {
     int idx = buscar_cliente(clientes, cpf, *qtd_clientes);
@@ -253,7 +249,6 @@ int excluir_cliente(Cliente *clientes, char cpf[], int *qtd_clientes)
     (*qtd_clientes)--;
     return 1;
 }
-
 
 void exibir_cliente(Cliente *cliente)
 {
@@ -272,6 +267,7 @@ int listar_todos_clientes(Cliente *clientes, int qtd_clientes)
     if (qtd_clientes < 1)
         return 0;
 
+    printf("\nClientes:\n");
     int i;
     for (i = 0; i < qtd_clientes; i++) {
         exibir_cliente(clientes+i);
@@ -282,14 +278,13 @@ int listar_todos_clientes(Cliente *clientes, int qtd_clientes)
 int listar_cliente_especifico(Cliente *clientes, char cpf[], int qtd_clientes) 
 {
     int idx = buscar_cliente(clientes, cpf, qtd_clientes);
-
     if (idx == -1)
         return 0;
 
+    printf("\nCliente:\n");
     exibir_cliente(clientes+idx);
     return 1;
 }
-
 
 void submenu_clientes(Cliente *clientes, int *qtd_clientes)
 {   

@@ -80,7 +80,6 @@ int menu_alteracao_venda()
 int alterar_venda(Venda *vendas, char cpf_cliente[], char codigo_produto[], Date data, Hora hora, int qtd_vendas)
 {   
     int idx = buscar_venda(vendas, cpf_cliente, codigo_produto, data, hora, qtd_vendas);
-
     if (idx == -1)
         return 0;
 
@@ -95,7 +94,7 @@ int alterar_venda(Venda *vendas, char cpf_cliente[], char codigo_produto[], Date
             fflush(stdin);
             break;
         case 2:
-            printf("\nAlteração cancelada.");
+            printf("\nAlteração cancelada.\n");
             break;
         default:
             printf("\nOpção inválida.");
@@ -107,7 +106,6 @@ int alterar_venda(Venda *vendas, char cpf_cliente[], char codigo_produto[], Date
 int excluir_venda(Venda *vendas, char cpf_cliente[], char codigo_produto[], Date data, Hora hora, int *qtd_vendas)
 {   
     int idx = buscar_venda(vendas, cpf_cliente, codigo_produto, data, hora, *qtd_vendas);
-
     if (idx == -1)
         return 0;
     
@@ -135,6 +133,7 @@ int listar_todas_vendas(Venda *vendas, int qtd_vendas)
     if (qtd_vendas < 1)
         return 0;
     
+    printf("\nVendas:\n");
     int i;
     for (i = 0; i < qtd_vendas; i++) {
         exibir_venda(vendas+i);
@@ -145,10 +144,10 @@ int listar_todas_vendas(Venda *vendas, int qtd_vendas)
 int listar_venda_especifica(Venda *vendas, char cpf_cliente[], char codigo_produto[], Date data, Hora hora, int qtd_vendas)
 {   
     int idx = buscar_venda(vendas, cpf_cliente, codigo_produto, data, hora, qtd_vendas);
-    
     if (idx == -1)
         return 0;
 
+    printf("\nVenda:\n");
     exibir_venda(vendas+idx);
 
     return 1;
@@ -252,9 +251,9 @@ void submenu_vendas(Venda *vendas, int *qtd_vendas, Cliente *clientes, int *qtd_
                 ler_dados_venda(cpf_cliente, codigo_produto, &data_venda, &hora_venda);
 
                 if (excluir_venda(vendas, cpf_cliente, codigo_produto, data_venda, hora_venda, qtd_vendas))
-                    printf("\nVenda excluída com sucesso!");
+                    printf("\nVenda excluída com sucesso!\n");
                 else
-                    printf("\nVenda não encontrada.");
+                    printf("\nVenda não encontrada.\n");
                 break;
 
             case 6:
