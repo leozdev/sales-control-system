@@ -255,10 +255,14 @@ void submenu_produtos(Produto *produtos, int *qtd_produtos)
             case 3:
                 printf("\nIncluindo um novo produto...\n");
 
-                if (incluir_produto(produtos, qtd_produtos))
-                    printf("\nProduto cadastrado com sucesso.\n");
+                if (*qtd_produtos < TOTAL_PRODUTOS) {
+                    if (incluir_produto(produtos, qtd_produtos))
+                        printf("\nProduto cadastrado com sucesso.\n");
+                    else
+                        printf("\nCódigo já cadastrado.\n");
+                }
                 else
-                    printf("\nCódigo já cadastrado.\n");
+                    printf("\nLimite de produtos cadastrados atingido.\n");
                 break;
 
             case 4:

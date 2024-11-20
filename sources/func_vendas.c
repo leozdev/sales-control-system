@@ -217,24 +217,28 @@ void submenu_vendas(Venda *vendas, int *qtd_vendas, Cliente *clientes, int *qtd_
             case 3:
                 printf("\nIncluindo uma nova venda...\n");
 
-                switch (incluir_venda(vendas, qtd_vendas, clientes, qtd_clientes, produtos, qtd_produtos))
-                {
-                    case 1:
-                        printf("\nVenda cadastrada com sucesso!\n");
-                        break;
-                    
-                    case -1:
-                        printf("\nCliente não encontrado.\n");
-                        break;
-                    
-                    case -2:
-                        printf("\nProduto não encontrado.\n");
-                        break;
-                    
-                    case -3:
-                        printf("\nVenda já cadastrada.\n");
-                        break;
+                if (*qtd_vendas < TOTAL_VENDAS) {
+                    switch (incluir_venda(vendas, qtd_vendas, clientes, qtd_clientes, produtos, qtd_produtos))
+                    {
+                        case 1:
+                            printf("\nVenda cadastrada com sucesso!\n");
+                            break;
+                        
+                        case -1:
+                            printf("\nCliente não encontrado.\n");
+                            break;
+                        
+                        case -2:
+                            printf("\nProduto não encontrado.\n");
+                            break;
+                        
+                        case -3:
+                            printf("\nVenda já cadastrada.\n");
+                            break;
+                    }
                 }
+                else
+                    printf("\nLimite de vendas cadastradas atingida.\n");
                 break;
 
             case 4:

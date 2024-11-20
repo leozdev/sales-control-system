@@ -327,10 +327,14 @@ void submenu_clientes(Cliente *clientes, int *qtd_clientes)
             case 3:
                 printf("\nIncluindo um novo cliente...\n");
 
-                if (incluir_cliente(clientes, qtd_clientes))
-                    printf("\nCliente cadastrado com sucesso!\n");
+                if (*qtd_clientes < TOTAL_CLIENTES) {
+                    if (incluir_cliente(clientes, qtd_clientes))
+                        printf("\nCliente cadastrado com sucesso!\n");
+                    else
+                        printf("\nCPF já cadastrado.\n");
+                }
                 else
-                    printf("\nCPF já cadastrado.\n");
+                    printf("\nLimite de clientes cadastrados atingido.\n");
                 break;
 
             case 4:
